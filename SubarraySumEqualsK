@@ -1,0 +1,96 @@
+//Subarray Sum equals to k. For Better Understanding go to GFG & LeetCode by click on link given in description
+
+//{ Driver Code Starts
+import java.io.*;
+import java.util.*;
+
+class Main {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine().trim());
+
+        while (t-- > 0) {
+            String line = read.readLine().trim();
+            String[] numsStr = line.split(" ");
+            int[] nums = new int[numsStr.length];
+            for (int i = 0; i < numsStr.length; i++) {
+                nums[i] = Integer.parseInt(numsStr[i]);
+            }
+
+            int d = Integer.parseInt(read.readLine().trim());
+
+            Solution ob = new Solution();
+            ArrayList<Integer> result = ob.subarraySum(nums, d);
+            // Print all elements in the result list
+            for (int i : result) {
+                System.out.print(i + " ");
+            }
+            System.out.println(); // Print a new line after the result
+            System.out.println("~");
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+
+class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target) {
+        // code here
+        int n=arr.length;
+        ArrayList<Integer> ans = new ArrayList<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0,0);
+        int sum=0;
+        int prevSum=0;
+        
+        for(int i=0;i<n;i++)
+        {
+            sum += arr[i];
+            if(map.containsKey(sum-target))
+            {
+            ans.add(map.get(sum-target)+1);
+            ans.add(i+1);
+            return ans;
+            }
+            
+         
+            if(prevSum==sum)
+            continue;
+            map.put(sum,i+1);
+            prevSum=sum;
+        }
+        if(ans.size()==0)
+        {
+            ans.add(-1);
+        }
+        return ans;
+    }
+}
+
+-----------------------------------------------------------------------------
+
+**LeetCode Solution**
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+         HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0,1);
+        int sum=0;
+        int ans=0;
+
+        for(int i=0;i<nums.length;i++)
+        {
+            sum += nums[i];
+            if(map.containsKey(sum-k))
+            {
+                ans += map.get(sum-k);
+            }
+map.put(sum,map.getOrDefault(sum,0)+1);
+        }
+
+        return ans;
+        
+    }
+}
