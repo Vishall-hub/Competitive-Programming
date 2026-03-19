@@ -1,0 +1,63 @@
+Find the Maximum Product of Two elements in a Array
+
+import java.util.Scanner;
+
+class Main
+{
+	public static long solve(int n, int arr[])
+	{
+		int lar=arr[0], Slar=0;
+		int small = arr[0], Ssmall=0;
+
+		for(int i=1; i<n; i++)
+		{
+
+			if(arr[i] > lar)
+			{
+				Slar = lar;
+				lar = arr[i];
+
+			}
+			else if( (arr[i] < lar && arr[i] > Slar) || arr[i]==lar )
+			{	Slar = arr[i];
+			}
+
+			// for negative numbers
+			if(arr[i] < small)
+			{
+				Ssmall = small;
+				small = arr[i];
+
+			}
+			else if( (arr[i] > small && arr[i] < Ssmall) || arr[i]==small )
+			{	Ssmall = arr[i];
+			}
+
+
+		}
+		return Math.max( (long)lar * Slar,  (long)small * Ssmall );
+
+	}
+
+	public static void main(String a[])
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of Array : ");
+		int n = sc.nextInt();
+
+		int[] arr = new int[n];
+		System.out.println("Enter the elements in array : ");
+
+		for (int i=0; i<n; i++)
+		{
+			arr[i] = sc.nextInt();
+		}
+
+		long MaximumProductOfTwoNumbers = solve(n, arr);
+		System.out.println(" Maximum Product Of Two Numbers :"+ MaximumProductOfTwoNumbers );
+
+
+	}
+
+
+}
