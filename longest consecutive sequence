@@ -1,0 +1,28 @@
+Longest Consecutive Sequence(Array + set) given an unsorted array of integers, find the length of the longest consecutive elements sequence
+
+import java.util.Arrays;
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    int[] arr = {100, 4, 20, 1, 2 ,3};
+	    
+	    Arrays.sort(arr);
+	    int count=1, ans=0;
+	    
+	    for(int i=1; i<arr.length-1; i++)
+	    {
+	        if(arr[i]-arr[i-1]==1)    
+	        {
+	            count++;
+	        }
+	        else
+	        {
+	            ans = Math.max(ans, count);
+	            count=1;
+	        }
+	    }
+	    
+		System.out.println(ans);
+	}
+}
