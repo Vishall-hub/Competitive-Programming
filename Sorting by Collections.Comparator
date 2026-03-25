@@ -1,0 +1,61 @@
+//Sorting by Collections.Comparator in tcsNqt 
+
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Comparator;
+import java.util.Collections;
+
+class Pair 
+{
+    int first;
+    int second;
+    
+    public Pair(int first, int second)
+    {
+        this.first=first;
+        this.second=second;
+    }
+    
+    public String toString()
+    {
+        return "(" + first + ", " + second+ ")";
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    Scanner sc = new Scanner(System.in);
+	    List<Pair> pairs = new ArrayList<>();
+	    
+	    
+	    int n=sc.nextInt();
+	    for(int i=0; i<n; i++)
+	    {
+	        int f = sc.nextInt();
+	        int s = sc.nextInt();
+	        
+	        pairs.add(new Pair(f, s));
+	    }
+	    
+	    Collections.sort(pairs, new Comparator<Pair>() 
+	    {
+	        public int compare(Pair p1, Pair p2)
+	        {
+	            if(p1.second != p2.second)
+	            {
+	            return Integer.compare(p1.second, p2.second);
+	            }
+	            else
+	            {
+	            return Integer.compare(p1.first, p2.first);
+	            }
+	        }
+	    });
+	    
+	    
+		System.out.println("Hello World "+pairs);
+	}
+}
