@@ -1,0 +1,44 @@
+class Main
+{
+public static void solve(int[][] mat)
+{
+    int l=0, r=mat[0].length-1, t=0, d=mat.length-1;
+    
+ 
+while(l<=r || t<=d)
+{
+    for(int i=l; i<=r; i++ )
+    {
+        System.out.print(mat[t][i]);
+    }
+    t++;
+    
+    for(int i=t; i<=d; i++)
+    {
+         System.out.print(mat[i][r]);
+    }
+    r--;
+    
+     for(int i=r; i>=l; i--)
+    {
+         System.out.print(mat[d][i]);
+    }
+    d--;
+    
+     for(int i=d; i>=t; i--)
+    {
+         System.out.print(mat[i][l]);
+    }
+    l++;
+    
+}
+    
+}
+
+public static void main(String a[])
+{
+int[][] mat = { {1,2,3},{4,5,6},{7,8,9}};
+
+	solve(mat);
+}
+}
